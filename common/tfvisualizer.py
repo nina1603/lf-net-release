@@ -3,7 +3,8 @@ import sys
 from IPython.display import clear_output, Image, display, HTML
 import tensorflow as tf
 import numpy as np
-from scipy.misc import imsave
+#from scipy.misc import imsave
+import imageio
 import pandas as pd
 from io import BytesIO
 if 'linux' in sys.platform:
@@ -53,7 +54,9 @@ def facets_confusion_matrix(images, actuals, predictions, disp_height=800):
     assert(N == len(actuals))
     assert(N == len(predictions))
     atlas_img = tile_images(images, padsize=0)
-    imsave('atlas.jpg', atlas_img)
+    #imsave('atlas.jpg', atlas_img)
+    imageio.imwrite('atlas.jpg', atlas_img)
+    
     df = pd.DataFrame({"prediction": predictions, "actual": actuals})
     jsonstr = df.to_json(orient='records')
     
