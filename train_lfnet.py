@@ -648,7 +648,8 @@ def build_training_network(config, next_batch, is_training, psf, global_step):
     # return loss, loss_det, det_endpoints, desc_endpoints, eval_endpoints, sift_endpoints
 
 def main(config):
-    tf.reset_default_graph() # for sure
+    tf.compat.v1.reset_default_graph()
+    #tf.reset_default_graph() # for sure
     set_summary_visibility(variables=False, gradients=False)
 
     log_dir = config.log_dir
